@@ -1,93 +1,3 @@
-/* "use client";
-
-import { useState, useRef, FormEvent, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-
-
-
-export default function ChatPage() {
-  const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState("");
-  const messagesEndRef = useRef(null);
-
-  const sendMessage = async  (e) => {
-    e.preventDefault();
-    if (!input.trim()) return;
-
-    const userMsg = { sender: "user", text: input };
-    setMessages((msgs) => [...msgs, userMsg]);
-    setInput("");
-
-    // Simulate bot reply (replace with API call as needed)
-    setTimeout(() => {
-      setMessages((msgs) => [
-        ...msgs,
-        { sender: "bot", text: `Bot reply to: "${input}"` },
-      ]);
-    }, 600);
-  };
-
-  // Scroll to bottom on new message
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
-
-  return (
-    <div className="flex justify-center items-center min-h-screen bg-muted">
-      <Card className="w-full max-w-md shadow-lg">
-        <CardHeader>
-          <CardTitle>Chat</CardTitle>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-4">
-          <div className="flex flex-col gap-2 h-80 overflow-y-auto bg-background p-2 rounded">
-            {messages.map((msg, idx) => (
-              <div
-                key={idx}
-                className={`flex items-end gap-2 ${
-                  msg.sender === "user" ? "justify-end" : "justify-start"
-                }`}
-              >
-                {msg.sender === "bot" && (
-                  <Avatar className="w-6 h-6">
-                    <AvatarFallback>🤖</AvatarFallback>
-                  </Avatar>
-                )}
-                <div
-                  className={`px-3 py-2 rounded-lg text-sm ${
-                    msg.sender === "user"
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-muted"
-                  }`}
-                >
-                  {msg.text}
-                </div>
-                {msg.sender === "user" && (
-                  <Avatar className="w-6 h-6">
-                    <AvatarFallback>🧑</AvatarFallback>
-                  </Avatar>
-                )}
-              </div>
-            ))}
-            <div ref={messagesEndRef} />
-          </div>
-          <form onSubmit={sendMessage} className="flex gap-2">
-            <Input
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Type your message..."
-              autoFocus
-            />
-            <Button type="submit">Send</Button>
-          </form>
-        </CardContent>
-      </Card>
-    </div>
-  );
-} */
-
 "use client";
 import React, { useRef, useEffect } from "react";
 import { useChat } from "@ai-sdk/react";
@@ -116,10 +26,10 @@ export default function Home() {
   const noMessage = 0;
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-muted">
-      <Card className="w-full max-w-md shadow-lg">
+    <div className="flex justify-center items-center min-h-screen">
+      <Card className="w-full max-w-7xl shadow-lg mx-10">
         <CardHeader>
-          <CardTitle className="text-xl">Chat</CardTitle>
+          <CardTitle className="text-xl text-center">XBOX RAGP</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col gap-4">
           <div className="flex flex-col gap-2 h-80 overflow-y-auto bg-background p-2 rounded">

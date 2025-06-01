@@ -43,7 +43,7 @@ export async function POST(req) {
         sort: {
           $vector: embedding,
         },
-        limit: 10,
+        limit: 100,
       });
 
       const documents = await cursor.toArray();
