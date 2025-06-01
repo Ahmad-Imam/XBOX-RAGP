@@ -2,7 +2,9 @@
 
 ## Welcome to XBOX RAGP.
 
-Live: https://expeditionz.vercel.app/
+Live: https://xbox-ragp.vercel.app/
+
+The chatbot might not always give results because of expired Open AI credit. Kindly view the demo video to preview the application
 
 ## Information
 
