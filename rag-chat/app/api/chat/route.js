@@ -1,7 +1,7 @@
 import { DataAPIClient } from "@datastax/astra-db-ts";
 import { embed, streamText } from "ai";
 import { openai } from "@ai-sdk/openai";
-// Allow streaming responses up to 30 seconds
+
 export const maxDuration = 30;
 
 const {
@@ -9,33 +9,26 @@ const {
   ASTRA_DB_COLLECTION,
   ASTRA_DB_NAMESPACE,
   ASTRA_DB_API_ENDPOINT,
-  OPENAI_API_KEY,
+
 } = process.env;
 
 const client = new DataAPIClient(ASTRA_DB_APPLICATION_TOKEN);
 const db = client.db(ASTRA_DB_API_ENDPOINT, {
   keyspace: ASTRA_DB_NAMESPACE,
 });
-/* const openai = new OpenAI({
-  apiKey: OPENAI_API_KEY,
-}); */
+
 
 export async function POST(req) {
   try {
     const { messages } = await req.json();
 
     const latestMessage = messages[messages.length - 1]?.content;
-    console.log("Latest message:", latestMessage);
 
-    /*  const embeddings = await openai.embedding.create({
-      model: "text-embedding-3-small",
-      input: latestMessage,
-    }); */
     const { embedding } = await embed({
       model: openai.embedding("text-embedding-3-small"),
       value: latestMessage,
     });
-    console.log("Embedding created:", embedding);
+  
     let docContext = "";
     try {
       const collection = db.collection(ASTRA_DB_COLLECTION);
@@ -74,12 +67,6 @@ export async function POST(req) {
         `,
     };
 
-    /*     const response = await openai.chat.completions.create({
-      model: "gpt-4.1-nano",
-      messages: [template, ...messages],
-      stream: true,
-    
-    }); */
 
     const result = streamText({
       model: openai("gpt-4.1-nano"),

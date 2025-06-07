@@ -1,5 +1,4 @@
 import { DataAPIClient } from "@datastax/astra-db-ts";
-//import { PuppeteerWebBasedLoader } from "langchain/document_loaders/web/puppeteer";
 
 import { PuppeteerWebBaseLoader } from "@langchain/community/document_loaders/web/puppeteer";
 
@@ -45,11 +44,10 @@ const createCollection = async (similarityMetric = "dot_product") => {
     vector: {
       dimension: 1536,
       metric: similarityMetric,
-      /*  type: "openai",
-      model: "text-embedding-3-small", */
+  
     },
   });
-  console.log("Collection created:", res);
+
 };
 
 const loadSampleData = async () => {
@@ -71,7 +69,7 @@ const loadSampleData = async () => {
         text: chunk,
         $vector: vector,
       });
-      console.log("Inserted chunk:", res);
+     
     }
   }
 };
